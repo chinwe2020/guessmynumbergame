@@ -16,7 +16,18 @@ let secretNumber = Math.floor(Math.random() * 20) + 1;
 
 let score = 20;
 
-const log = function () {
+const playAgain = function(){
+  score = 20;
+  secretNumber = Math.floor(Math.random() * 20) + 1;
+  document.querySelector('.message').textContent = 'Start Guessing...';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+}
+
+const playGame = function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess);
 
@@ -52,18 +63,9 @@ const log = function () {
           document.querySelector('.message').textContent = 'You Lost... Womp!';
           document.querySelector('.score').textContent = 0;
       }
-  }
+    }
 };
 
-document.querySelector('.check').addEventListener('click', log);
+document.querySelector('.check').addEventListener('click', playGame);
 
-document.querySelector('.again').addEventListener('click', function(){
-  score = 20;
-  secretNumber = Math.floor(Math.random() * 20) + 1;
-  document.querySelector('.message').textContent = 'Start Guessing...';
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('.score').textContent = score;
-  document.querySelector('.guess').value = '';
-  document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.number').style.width = '15rem';
-});
+document.querySelector('.again').addEventListener('click', playAgain);
